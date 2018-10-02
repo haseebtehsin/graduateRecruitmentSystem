@@ -26,6 +26,6 @@ server.get ('/clear', function(req,res){
     res.redirect('/');
 });
 
-server.listen(3000,function(){
+server.listen(8080,function(){
 console.log("server has started");
 });
