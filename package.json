@@ -1,0 +1,26 @@
+{
+  "name": "graduaterecruitmentsystem",
+  "version": "1.0.0",
+  "description": "SE_Final_Project_Group2",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haris00/graduateRecruitmentSystem.git"
+  },
+  "author": "Group2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haris00/graduateRecruitmentSystem/issues"
+  },
+  "homepage": "https://github.com/haris00/graduateRecruitmentSystem#readme"
+}
