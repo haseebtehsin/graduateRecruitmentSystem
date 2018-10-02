@@ -26,6 +26,6 @@ server.get ('/clear', function(req,res){
     res.redirect('/');
 });
 
-server.listen(8080,function(){
+server.listen(process.env.PORT || 8080,function(){
 console.log("server has started");
 });
