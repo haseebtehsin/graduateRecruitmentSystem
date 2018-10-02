@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/haris00/graduateRecruitmentSystem/issues"
   },
-  "homepage": "https://github.com/haris00/graduateRecruitmentSystem#readme"
+  "homepage": "https://github.com/haris00/graduateRecruitmentSystem#readme",
+  "engines": {
+    "node": "8.12.0"
+  }
 }
