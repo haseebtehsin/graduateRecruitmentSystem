@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Graduate Recruitment System</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        .jumbotron {
+            background-color: darkslategray;
+            color: white;
+        }
+        .grey_color {
+        background-color: #ffffff;
+	    color: #000000;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Graduate Recruitment System</h1>
+        </div>
+        <div>
+            <h3>Fill Up Profile</h3>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+
+                <div class="jumbotron">
+                    <form method="POST">
+                        <h4>Basic Information</h4>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="txt-fname" type="text" class="form-control" name="fname" placeholder="First Name">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="txt-lname" type="text" class="form-control" name="lname" placeholder="Last Name">
+                        </div>
+                        <div class="input-group">
+                            <label>Gender:</label>
+                            &nbsp;&nbsp;<input id="txt-gender-m" type="radio" name="gender" value="Male" checked> Male<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="txt-gender-f" type="radio" name="gender" value="Female">
+                            Female<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="txt-gender-o" type="radio" name="gender" value="Other"> Other
+                        </div>
+                        <div class="input-group">
+                            <label>Date of Birth:</label>
+                            <input id="dt-dob" type="date" class="form-control" name="dob" placeholder="Date of Birth"
+                                data-date-inline-picker="true">
+                        </div>
+
+                        <br><br>
+
+                        <h4>Educational Information</h4>
+                        <div class="row">
+
+                            <label>Select level of Education:</label>
+                            <select id="select" class="grey_color">
+                                <option value="Masters" selected>Masters</option>
+                                <option value="Bachelors">Bachelors</option>
+                                <option value="High School">High School</option>
+                            </select><br>
+                            <div class="col-lg-4 col-md-3 col-sm-3">
+                                <div class="input-group">
+                                    <label>Name of Institute:</label>
+                                    <input id="txt-institute" type="text" class="form-control" name="institute">
+                                </div>
+                                <div class="input-group">
+                                    <label>Start Date:</label>
+                                    <input id="dt-degree-sdate" type="date" class="form-control" name="start_date"
+                                        placeholder="Start Date" data-date-inline-picker="true">
+                                </div>
+                                <div class="input-group">
+                                    <label>Marks/GPA obtained:</label>
+                                    <input id="txt-gpa-o" type="text" class="form-control" name="gpa-o">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-3">
+                                <div class="input-group">
+                                    <label>Degree Title:</label>
+                                    <input id="txt-degree" type="text" class="form-control" name="degree">
+                                </div>
+                                <div class="input-group">
+                                    <label>End Date:</label>
+                                    <input id="dt-degree-edate" type="date" class="form-control" name="end_date"
+                                        placeholder="End Date" data-date-inline-picker="true">
+                                </div>
+                                <div class="input-group">
+                                    <label>Total Marks/GPA:</label>
+                                    <input id="txt-gpa-t" type="text" class="form-control" name="gpa-t">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-3">
+                                <label>Select Specialization:</label>
+
+                                <select class="form-control">
+                                    <option value="Electrical Engineering">Electrical Engineering</option>
+                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                    <option value="Computer Engineering">Computer Engineering</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Arts">Arts</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <br><br>
+
+                        <h4>Educational Information</h4>
+
+
+                        <div class="row">
+
+                            <label>Select level of Education:</label>
+                            <select id="select" class="grey_color">
+                                <option value="Masters" selected>Masters</option>
+                                <option value="Bachelors">Bachelors</option>
+                                <option value="High School">High School</option>
+                            </select><br>
+                            <div class="col-lg-4 col-md-3 col-sm-3">
+                                <div class="input-group">
+                                    <label>Name of Institute:</label>
+                                    <input id="txt-institute" type="text" class="form-control" name="institute">
+                                </div>
+                                <div class="input-group">
+                                    <label>Start Date:</label>
+                                    <input id="dt-degree-sdate" type="date" class="form-control" name="start_date"
+                                        placeholder="Start Date" data-date-inline-picker="true">
+                                </div>
+                                <div class="input-group">
+                                    <label>Marks/GPA obtained:</label>
+                                    <input id="txt-gpa-o" type="text" class="form-control" name="gpa-o">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-3">
+                                <div class="input-group">
+                                    <label>Degree Title:</label>
+                                    <input id="txt-degree" type="text" class="form-control" name="degree">
+                                </div>
+                                <div class="input-group">
+                                    <label>End Date:</label>
+                                    <input id="dt-degree-edate" type="date" class="form-control" name="end_date"
+                                        placeholder="End Date" data-date-inline-picker="true">
+                                </div>
+                                <div class="input-group">
+                                    <label>Total Marks/GPA:</label>
+                                    <input id="txt-gpa-t" type="text" class="form-control" name="gpa-t">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-3">
+                                <label>Select Specialization:</label>
+
+                                <select class="form-control">
+                                    <option value="Electrical Engineering">Electrical Engineering</option>
+                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                    <option value="Computer Engineering">Computer Engineering</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Arts">Arts</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <br><br>
+
+                        <h4>Educational Information</h4>
+
+
+                        <div class="row">
+
+                            <label>Select level of Education:</label>
+                            <select id="select" class="grey_color">
+                                <option value="Masters" selected>Masters</option>
+                                <option value="Bachelors">Bachelors</option>
+                                <option value="High School">High School</option>
+                            </select><br>
+                            <div class="col-lg-4 col-md-3 col-sm-3">
+                                <div class="input-group">
+                                    <label>Name of Institute:</label>
+                                    <input id="txt-institute" type="text" class="form-control" name="institute">
+                                </div>
+                                <div class="input-group">
+                                    <label>Start Date:</label>
+                                    <input id="dt-degree-sdate" type="date" class="form-control" name="start_date"
+                                        placeholder="Start Date" data-date-inline-picker="true">
+                                </div>
+                                <div class="input-group">
+                                    <label>Marks/GPA obtained:</label>
+                                    <input id="txt-gpa-o" type="text" class="form-control" name="gpa-o">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-3">
+                                <div class="input-group">
+                                    <label>Degree Title:</label>
+                                    <input id="txt-degree" type="text" class="form-control" name="degree">
+                                </div>
+                                <div class="input-group">
+                                    <label>End Date:</label>
+                                    <input id="dt-degree-edate" type="date" class="form-control" name="end_date"
+                                        placeholder="End Date" data-date-inline-picker="true">
+                                </div>
+                                <div class="input-group">
+                                    <label>Total Marks/GPA:</label>
+                                    <input id="txt-gpa-t" type="text" class="form-control" name="gpa-t">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3 col-sm-3">
+                                <label>Select Specialization:</label>
+
+                                <select class="form-control">
+                                    <option value="Electrical Engineering">Electrical Engineering</option>
+                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                    <option value="Computer Engineering">Computer Engineering</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Arts">Arts</option>
+                                </select>
+
+                            </div>
+
+                        </div><br><br>
+                        <a href="/maintenance" role="button" type="submit" class="btn-primary btn-lg" id="btn-save">
+                            Save
+                        </a>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Graduate Recruitment System</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        .jumbotron {
+            background-color: darkslategray;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Graduate Recruitment System</h1>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-4 col-md-3 col-sm-3">
+                <h4>Login</h4>
+                <div class="jumbotron">
+                    <form name="form-home">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="txt-username" type="text" class="form-control" name="username" placeholder="Username">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input id="txt-password" type="password" class="form-control" name="password" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn-primary btn-block" id="btn-login"> Login
+                        </button>
+                        <button type="button" class="btn btn-link btn-block" id="btn-forgot">Forgot Password?</button>
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-3 col-lg-offset-3">
+                <h4>Sign Up</h4>
+                <div class="jumbotron">
+                    <form>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="txt-username-s" type="text" class="form-control" name="username" placeholder="Enter Username">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input id="txt-password-s" type="password" class="form-control" name="password" placeholder="Enter Password">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input id="txt-email-s" type="email" class="form-control" name="password" placeholder="Email Address">
+                        </div>
+                        <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3">
+                            <button type="submit" class="btn-primary btn-lg" id="btn-signup"> Sign up </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+</body>
+
+</html>
