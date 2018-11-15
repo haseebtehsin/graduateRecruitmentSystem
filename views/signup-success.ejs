@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Graduate Recruitment System</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+      .jumbotron {
+        background-color: darkslategray;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="jumbotron"><h1>Graduate Recruitment System</h1></div>
+
+      <div class="row">
+        <div class="jumbotron">
+          <h4>Thank You for Registering</h4>
+          <h4>Your username is: <%=data.username %></h4>
+          <h4>Please go to login page and Sign in</h4>
+          <a
+            type="submit"
+            href="/"
+            class="btn-primary btn-lg"
+            id="btn-login"
+            role="button"
+          >
+            Go to Home Page
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Graduate Recruitment System</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+      .jumbotron {
+        background-color: darkslategray;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="jumbotron"><h1>Graduate Recruitment System</h1></div>
+
+      <div class="row">
+        <div class="jumbotron">
+          <h4>Login Successful</h4>
+          <h4>Please proceed to dashboard</h4>
+
+          <a
+            type="submit"
+            href="/api/dashboard"
+            class="btn-primary btn-lg"
+            id="btn-dashboard"
+            role="button"
+          >
+            Go to Dashboard
+          </a>
+        </div>
+      </div>
+    </div>
+    <script>
+      localStorage.setItem("x-auth-token", data.auth);
+      console.log(data.auth);
+    </script>
+  </body>
+</html>

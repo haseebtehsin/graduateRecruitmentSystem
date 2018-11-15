@@ -34,7 +34,7 @@
             <div class="col-lg-4 col-md-3 col-sm-3">
                 <h4>Login</h4>
                 <div class="jumbotron">
-                    <form name="form-home">
+                    <form name="login-form" method="post" action="/api/auth">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input id="txt-username" type="text" class="form-control" name="username" placeholder="Username">
@@ -43,19 +43,20 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <input id="txt-password" type="password" class="form-control" name="password" placeholder="Password">
                         </div><br>
-                        <a type="submit" href="/viewProjects" class="btn-primary btn-lg" id="btn-login" role="button">
+                        <input type="submit"  class="btn-primary btn-lg" id="btn-login" role="button">
                             Login
                         </a>
                         <a type="button" href="/forgotPassword" class="btn btn-link btn-block" id="btn-forgot" role="button">Forgot
                             Password?</button>
-
+                            </a>
                     </form>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-3 col-lg-offset-3">
+
+            <div class="col-lg-4 col-md-3 col-sm-3 col-lg-offset-3">
                 <h4>Sign Up</h4>
                 <div class="jumbotron">
-                    <form>
+                    <form id="signup-form" method="post" action="/api/users"> 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input id="txt-username-s" type="text" class="form-control" name="username" placeholder="Enter Username">
@@ -66,12 +67,11 @@
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="txt-email-s" type="email" class="form-control" name="password" placeholder="Email Address">
+                            <input id="txt-email-s" type="email" class="form-control" name="email" placeholder="Email Address">
                         </div>
                         <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3">
-                            <a href="/profile" type="submit" role="button" class="btn-primary btn-lg" id="btn-signup">
-                                Sign up
-                            </a>
+                            <input type="submit" role="button" class="btn-primary btn-lg" id="btn-signup">
+                                
                         </div>
                     </form>
 
@@ -81,7 +81,7 @@
 
     </div>
 
-    </div>
+    
 
 </body>
 
