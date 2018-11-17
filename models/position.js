@@ -42,6 +42,34 @@ const Position = db.define("position", {
   }
 });
 
+const Message = db.define("message", {
+  message_txt: {
+    type: Sequelize.STRING,
+    minlength: 3,
+    maxlength: 3000
+  },
+  sender_id: {
+    type: Sequelize.INTEGER
+  },
+  receiver_id: {
+    type: Sequelize.INTEGER
+  },
+  position_id: {
+    type: Sequelize.INTEGER
+  },
+  student_read: {
+    type: Sequelize.STRING,
+    maxlength: 1,
+    minlength: 1
+  },
+  admin_read: {
+    type: Sequelize.STRING,
+    maxlength: 1,
+    minlength: 1
+  }
+});
+
+// Position.hasMany(Message);
 // User.generteAuthToken = function() {
 //   const token = jwt.sign(
 //     {
@@ -78,6 +106,7 @@ function validatePosition(position) {
 }
 
 exports.position = Position;
+exports.message = Message;
 exports.validatePosition = validatePosition;
 
 // User.create({

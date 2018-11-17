@@ -42,9 +42,4 @@ router.post("/", urlenCodedParser, async (req, res) => {
   //   res.send("user registered");
 });
 
-router.get("/:id", auth, async (req, res) => {
-  const user = Use.findById(req.user.id);
-  res.send(user.username);
-});
-
 module.exports = router;
