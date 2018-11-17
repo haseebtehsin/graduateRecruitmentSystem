@@ -2,9 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const users = require("./routes/users");
+const admin = require("./routes/admin_user");
 const auth = require("./routes/auth");
 const dashboard = require("./routes/dashboard");
 const profile = require("./routes/profiles");
+const root = require("./routes/root");
 const app = express();
 const db = require("./db").sequelize;
 const config = require("config");
@@ -30,21 +32,29 @@ app.use(
     cooke: { secure: false }
   })
 );
-app.get("/", function(req, res) {
-  res.render("home");
-});
+
 app.use("/api/profile", profile);
 app.use("/api/users", users);
+app.use("/api/admin", admin);
 app.use("/api/auth", auth);
 // app.use(session({ secret: "atest", resave: false, saveUninitialized: true }));
 app.use("/api/dashboard", dashboard);
-
-app.get("/forgotPassword", function(req, res) {
-  res.render("forgotPassword");
+// app.use("/", root);
+app.get("/", function(req, res) {
+  if (req.session.user_id) {
+    if (req.session.user_type === "S") res.redirect("/api/dashboard");
+    else res.redirect("/api/admin/dashboard");
+  } else res.render("home");
 });
 
-app.get("/maintenance", function(req, res) {
-  res.render("maintenance");
+app.get("/logout", function(req, res) {
+  req.session.user_id = "";
+  if (req.session.user_type == "A") res.render("admin_home");
+  else res.render("home");
+});
+
+app.get("/admin", function(req, res) {
+  res.render("admin_home");
 });
 
 // app.get("/api/dashboard", function(req, res) {

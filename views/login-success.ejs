@@ -27,13 +27,32 @@
 
   <body>
     <div class="container">
-      <div class="jumbotron"><h1>Graduate Recruitment System</h1></div>
+      <div class="jumbotron">
+        <div>
+          <p style="text-align:right;">
+            <a href="/logout" class="btn btn-info btn-lg">
+              <span class="glyphicon glyphicon-log-out"></span> Log out
+            </a>
+          </p>
+        </div>
+        <h1>Graduate Recruitment System</h1>
+      </div>
 
       <div class="row">
         <div class="jumbotron">
           <h4>Login Successful</h4>
-          <h4>Please proceed to dashboard</h4>
-
+          <h4>Please proceed to dashboard <%=user_type=="A"%></h4>
+          <% if(user_type=="A"){ %>
+          <a
+            type="submit"
+            href="/api/admin/dashboard"
+            class="btn-primary btn-lg"
+            id="btn-dashboard"
+            role="button"
+          >
+            Go to Dashboard
+          </a>
+          <% } else{ %>
           <a
             type="submit"
             href="/api/dashboard"
@@ -43,12 +62,9 @@
           >
             Go to Dashboard
           </a>
+          <% } %>
         </div>
       </div>
     </div>
-    <script>
-      localStorage.setItem("x-auth-token", data.auth);
-      console.log(data.auth);
-    </script>
   </body>
 </html>

@@ -126,31 +126,31 @@ const Profile = db.define("profile", {
   bs_gpatotal: {
     type: Sequelize.FLOAT
   },
-  clginstitute: {
+  hs_institute: {
     type: Sequelize.STRING,
     minlength: 3,
     maxlength: 255
   },
-  clg_degree: {
+  hs_degree: {
     type: Sequelize.STRING,
     minlength: 3,
     maxlength: 255
   },
-  clg_specialization: {
+  hs_specialization: {
     type: Sequelize.STRING,
     minlength: 3,
     maxlength: 255
   },
-  clg_startdate: {
+  hs_startdate: {
     type: Sequelize.DATE
   },
-  clg_enddate: {
+  hs_enddate: {
     type: Sequelize.DATE
   },
-  clg_gpaobtainted: {
+  hs_gpaobtainted: {
     type: Sequelize.FLOAT
   },
-  clg_gpatotal: {
+  hs_gpatotal: {
     type: Sequelize.FLOAT
   },
   id: {
@@ -164,6 +164,7 @@ const Profile = db.define("profile", {
 });
 
 User.hasOne(Profile);
+// User.hasMany(Position);
 // User.generteAuthToken = function() {
 //   const token = jwt.sign(
 //     {

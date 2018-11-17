@@ -27,13 +27,33 @@
 
   <body>
     <div class="container">
-      <div class="jumbotron"><h1>Graduate Recruitment System</h1></div>
+      <div class="jumbotron">
+        <div>
+          <p style="text-align:right;">
+            <a href="/logout" class="btn btn-info btn-lg">
+              <span class="glyphicon glyphicon-log-out"></span> Log out
+            </a>
+          </p>
+        </div>
+        <h1>Graduate Recruitment System</h1>
+      </div>
 
       <div class="row">
         <div class="jumbotron">
           <h4>Thank You for Registering</h4>
           <h4>Your username is: <%=data.username %></h4>
           <h4>Please go to login page and Sign in</h4>
+          <% if(user_type=="A"){ %>
+          <a
+            type="submit"
+            href="/admin"
+            class="btn-primary btn-lg"
+            id="btn-login"
+            role="button"
+          >
+            Go to Home Page
+          </a>
+          <% } else{ %>
           <a
             type="submit"
             href="/"
@@ -43,6 +63,7 @@
           >
             Go to Home Page
           </a>
+          <% } %>
         </div>
       </div>
     </div>

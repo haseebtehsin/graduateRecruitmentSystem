@@ -28,6 +28,13 @@
 <body>
     <div class="container">
         <div class="jumbotron">
+                <div>
+                        <p style="text-align:right;">
+                          <a href="/logout" class="btn btn-info btn-lg">
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
+                          </a>
+                        </p>
+                      </div>
             <h1>Graduate Recruitment System</h1>
         </div>
         <div>
@@ -39,7 +46,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
 
                 <div class="jumbotron">
-                    <form method="POST" action="/api/profile">
+                    <form name="profileForm" method="POST" action="/api/profile/add">
                         <h4>Basic Information</h4>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -69,11 +76,10 @@
                         <h4>Educational Information</h4>
                         <div class="row">
 
-                            <label>Select level of Education:</label>
+                            <label>Level of Education:</label>
                             <select id="select" class="grey_color">
                                 <option value="Masters" selected>Masters</option>
-                                <option value="Bachelors">Bachelors</option>
-                                <option value="High School">High School</option>
+                                <option value="NA">Bachelors</option>
                             </select><br>
                             <div class="col-lg-4 col-md-3 col-sm-3">
                                 <div class="input-group">
@@ -112,8 +118,10 @@
                                     <option value="Electrical Engineering">Electrical Engineering</option>
                                     <option value="Mechanical Engineering">Mechanical Engineering</option>
                                     <option value="Computer Engineering">Computer Engineering</option>
+                                    <option value="Software Engineering">Software Engineering</option>
                                     <option value="Computer Science">Computer Science</option>
                                     <option value="Arts">Arts</option>
+                                    <option value="Other">Other</option>
                                 </select>
 
                             </div>
@@ -127,11 +135,9 @@
 
                         <div class="row">
 
-                            <label>Select level of Education:</label>
+                            <label>Level of Education:</label>
                             <select id="select" class="grey_color">
-                                <option value="Masters" >Masters</option>
                                 <option value="Bachelors" selected>Bachelors</option>
-                                <option value="High School">High School</option>
                             </select><br>
                             <div class="col-lg-4 col-md-3 col-sm-3">
                                 <div class="input-group">
@@ -170,8 +176,10 @@
                                     <option value="Electrical Engineering">Electrical Engineering</option>
                                     <option value="Mechanical Engineering">Mechanical Engineering</option>
                                     <option value="Computer Engineering">Computer Engineering</option>
+                                    <option value="Software Engineering">Software Engineering</option>
                                     <option value="Computer Science">Computer Science</option>
                                     <option value="Arts">Arts</option>
+                                    <option value="Other">Other</option>
                                 </select>
 
                             </div>
@@ -185,10 +193,8 @@
 
                         <div class="row">
 
-                            <label>Select level of Education:</label>
+                            <label>Level of Education:</label>
                             <select id="select" class="grey_color">
-                                <option value="Masters" >Masters</option>
-                                <option value="Bachelors">Bachelors</option>
                                 <option value="High School" selected>High School</option>
                             </select><br>
                             <div class="col-lg-4 col-md-3 col-sm-3">
@@ -228,8 +234,10 @@
                                     <option value="Electrical Engineering">Electrical Engineering</option>
                                     <option value="Mechanical Engineering">Mechanical Engineering</option>
                                     <option value="Computer Engineering">Computer Engineering</option>
+                                    <option value="Software Engineering">Software Engineering</option>
                                     <option value="Computer Science">Computer Science</option>
                                     <option value="Arts">Arts</option>
+                                    <option value="Other">Other</option>
                                 </select>
 
                             </div>
@@ -249,7 +257,7 @@
     </div>
 
     </div>
-
+        
 </body>
 
 </html>

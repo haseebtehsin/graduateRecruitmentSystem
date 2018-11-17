@@ -27,6 +27,7 @@
     <div class="container">
         <div class="jumbotron">
             <h1>Graduate Recruitment System</h1>
+            <h3>Admin Panel</h3>
         </div>
 
         <div class="row">
@@ -34,7 +35,7 @@
             <div class="col-lg-4 col-md-3 col-sm-3">
                 <h4>Login</h4>
                 <div class="jumbotron">
-                    <form name="form-home">
+                    <form name="login-form" method="post" action="/api/admin/login">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input id="txt-username" type="text" class="form-control" name="username" placeholder="Username">
@@ -42,18 +43,21 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <input id="txt-password" type="password" class="form-control" name="password" placeholder="Password">
-                        </div>
-                        <button type="submit" class="btn-primary btn-block" id="btn-login"> Login
-                        </button>
-                        <button type="button" class="btn btn-link btn-block" id="btn-forgot">Forgot Password?</button>
-
+                        </div><br>
+                        <input type="submit"  class="btn-primary btn-lg" id="btn-login" role="button">
+                            Login
+                        </a>
+                        <a type="button" href="/forgotPassword" class="btn btn-link btn-block" id="btn-forgot" role="button">Forgot
+                            Password?</button>
+                            </a>
                     </form>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-3 col-lg-offset-3">
+
+            <div class="col-lg-4 col-md-3 col-sm-3 col-lg-offset-3">
                 <h4>Sign Up</h4>
                 <div class="jumbotron">
-                    <form>
+                    <form id="signup-form" method="post" action="/api/admin/signup"> 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input id="txt-username-s" type="text" class="form-control" name="username" placeholder="Enter Username">
@@ -64,10 +68,11 @@
                         </div>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="txt-email-s" type="email" class="form-control" name="password" placeholder="Email Address">
+                            <input id="txt-email-s" type="email" class="form-control" name="email" placeholder="Email Address">
                         </div>
                         <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3">
-                            <button type="submit" class="btn-primary btn-lg" id="btn-signup"> Sign up </button>
+                            <input type="submit" role="button" class="btn-primary btn-lg" id="btn-signup">
+                                
                         </div>
                     </form>
 
@@ -77,7 +82,8 @@
 
     </div>
 
-    </div>
+    
+
 </body>
 
 </html>
