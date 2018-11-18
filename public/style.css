@@ -186,6 +186,3 @@ img {
   height: 516px;
   overflow-y: auto;
 }
-.borderless .list-group-item {
-  border: none;
-}

@@ -1,8 +1,10 @@
 const Profile = require("../models/user").profile;
 const auth = require("../middleware/auth");
+const User = require("../models/user").user;
 const validate = require("../models/user").validate;
 const Position = require("../models/position").position;
 const Message = require("../models/position").message;
+const Application = require("../models/position").application;
 const bcrypt = require("bcryptjs");
 const router = require("../router");
 const bodyParser = require("body-parser");
@@ -99,6 +101,54 @@ router.get("/messages/:p_id/:r_id", async (req, res) => {
     //   "Cache-Control": "no-cache"
     // });
     res.redirect(`/api/dashboard/positions/${req.params.p_id}`);
+  }
+});
+
+router.get("/apply/:p_id", async (req, res) => {
+  if (req.session.user_type !== "S") res.send("Un-Authorized Access");
+  else {
+    const position = await Position.findOne({
+      where: {
+        id: req.params.p_id
+      }
+    }).error(function(err) {
+      console.log("Error:" + err);
+    });
+
+    res.render("apply", { position: position });
+  }
+});
+
+router.post("/apply", urlenCodedParser, async (req, res) => {
+  if (req.session.user_type !== "S") res.send("Un-Authorized Access");
+  else {
+    const position = await Position.findOne({
+      where: {
+        id: req.body.positionid
+      }
+    }).error(function(err) {
+      console.log("Error:" + err);
+    });
+
+    const application = await Application.findOne({
+      where: {
+        applicant_id: req.session.user_id,
+        position_id: req.body.positionid
+      }
+    }).error(function(err) {
+      console.log("Error:" + err);
+    });
+    if (application)
+      res.send("Cannot re-apply, you have already applied for this position");
+    else {
+      await Application.create({
+        applicant_id: req.session.user_id,
+        position_id: req.body.positionid,
+        cover_letter: req.body.description,
+        admin_id: position.userId
+      });
+    }
+    res.send("Successfully Applied");
   }
 });
 

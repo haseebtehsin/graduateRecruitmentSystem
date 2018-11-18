@@ -69,6 +69,23 @@ const Message = db.define("message", {
   }
 });
 
+const Application = db.define("application", {
+  applicant_id: {
+    type: Sequelize.INTEGER
+  },
+  position_id: {
+    type: Sequelize.INTEGER
+  },
+  admin_id: {
+    type: Sequelize.INTEGER
+  },
+  cover_letter: {
+    type: Sequelize.TEXT,
+    minlength: 100,
+    maxlength: 10000
+  }
+});
+
 // Position.hasMany(Message);
 // User.generteAuthToken = function() {
 //   const token = jwt.sign(
@@ -108,6 +125,7 @@ function validatePosition(position) {
 exports.position = Position;
 exports.message = Message;
 exports.validatePosition = validatePosition;
+exports.application = Application;
 
 // User.create({
 //   firstName: "John",

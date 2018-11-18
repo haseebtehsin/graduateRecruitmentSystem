@@ -95,7 +95,7 @@
                     <hr>
                     <form id="sendMessage" method="get" action="/api/admin/message/<%= position.id%>/<%= sender.DISTINCT%>">
                       <div class="input-group">
-                        <input type="text" name="messagetxt" class="form-control" placeholder="Type your message...">
+                        <input type="text" autocomplete="off" name="messagetxt" class="form-control" placeholder="Type your message...">
                         <div class="input-group-append">
                           <button class="btn btn-primary">Send</button>
                         </div>
