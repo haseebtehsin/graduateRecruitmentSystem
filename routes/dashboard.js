@@ -92,6 +92,12 @@ router.get("/messages/:p_id/:r_id", async (req, res) => {
       admin_read: "N",
       student_read: "Y"
     });
+    // res.writeHead(200, {
+    //   "Content-Type": mimeType,
+    //   "Content-Length": contents.length,
+    //   "Accept-Ranges": "bytes",
+    //   "Cache-Control": "no-cache"
+    // });
     res.redirect(`/api/dashboard/positions/${req.params.p_id}`);
   }
 });

@@ -54,22 +54,17 @@ app.get("/logout", function(req, res) {
 });
 
 app.get("/admin", function(req, res) {
-  res.render("admin_home");
+  if (req.session.user_id) {
+    if (req.session.user_type === "S") res.redirect("/api/dashboard");
+    else res.redirect("/api/admin/dashboard");
+  } else res.render("admin_home");
 });
 
-// app.get("/api/dashboard", function(req, res) {
-//   res.render("dashboard");
-// });
+app.get("/chat", function(req, res) {
+  res.render("test_chat");
+});
 
 app.listen(process.env.PORT || 8080, function() {
   console.log("Server has started");
   db.sync().then(() => console.log("Database Connected"));
 });
-
-// let a = db.sequelize.query(
-//   "select date_part('year', CURRENT_DATE)||lpad((nextval('test_seq'))::TEXT,5,'0')::TEXT"
-// );
-
-// console.log(a);
-
-// model.createTables(db.sequelize);

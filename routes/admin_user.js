@@ -12,6 +12,8 @@ const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 const urlenCodedParser = bodyParser.urlencoded({ extended: false });
 
 router.post("/signup", urlenCodedParser, async (req, res) => {
@@ -121,51 +123,66 @@ router.post("/position", urlenCodedParser, async (req, res) => {
   }
 });
 
-router.post("/message", urlenCodedParser, async (req, res) => {
+router.get("/message/:id", urlenCodedParser, async (req, res) => {
   if (req.session.user_type !== "A") res.send("Un-Authorized Access");
   else {
-    const senders = await db
-      .query(
-        `select distinct sender_id from messages where admin_read='N' and receiver_id=${
-          req.session.user_id
-        }`,
-        { raw: true }
-      )
-      .error(function(err) {
+    const senders = await Message.aggregate("sender_id", "DISTINCT", {
+      plain: false,
+      where: {
+        receiver_id: req.session.user_id
+      }
+    }).error(function(err) {
+      console.log("Error:" + err);
+    });
+
+    console.log(senders);
+    // res.send(senders);
+
+    if (!senders) res.send("No Messages");
+    else {
+      const position = await Position.findOne({
+        where: {
+          userId: req.session.user_id,
+          id: req.params.id
+        }
+      }).error(function(err) {
         console.log("Error:" + err);
       });
-    // .then(msg => {
-    //   res.render("admin_messages", { data: msg });
-    // });
-    if (senders[0].length === 0) res.send("No Messages");
-    else {
-      const messages = await Message.findAll({
+      console.log(position.id);
+      const message = await Message.findAll({
         where: {
-          receiver_id: req.session.user_id,
-          admin_read: "N"
+          position_id: req.params.id,
+          [Op.or]: [
+            { sender_id: req.session.user_id },
+            { receiver_id: req.session.user_id }
+          ]
         },
         order: [["id", "ASC"], ["createdAt", "ASC"]]
       }).error(function(err) {
         console.log("Error:" + err);
       });
-      console.log(senders[0]);
-      console.log(messages);
-      res.render("admin_messages", { sender: senders, message: messages });
+
+      res.render("admin_messages", {
+        sender: senders,
+        message: message,
+        position: position
+      });
     }
   }
 });
 
-router.post("/message/:p_id/:r_id", urlenCodedParser, async (req, res) => {
+router.get("/message/:p_id/:r_id", urlenCodedParser, async (req, res) => {
   if (req.session.user_type !== "A") res.send("Un-Authorized Access");
   else {
     await Message.create({
       sender_id: req.session.user_id,
       position_id: req.params.p_id,
-      text: req.body.message,
+      message_txt: req.query.messagetxt,
       receiver_id: req.params.r_id,
       admin_read: "Y",
       student_read: "N"
     });
+    res.redirect(`/api/admin/message/${req.params.p_id}`);
   }
 });
 
