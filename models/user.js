@@ -69,7 +69,7 @@ const Profile = db.define("profile", {
     maxlength: 1
   },
   dob: {
-    type: Sequelize.DATE
+    type: Sequelize.DATEONLY
   },
   ms_institute: {
     type: Sequelize.STRING,
@@ -87,10 +87,10 @@ const Profile = db.define("profile", {
     maxlength: 255
   },
   ms_startdate: {
-    type: Sequelize.DATE
+    type: Sequelize.DATEONLY
   },
   ms_enddate: {
-    type: Sequelize.DATE
+    type: Sequelize.DATEONLY
   },
   ms_gpaobtainted: {
     type: Sequelize.FLOAT
@@ -115,10 +115,10 @@ const Profile = db.define("profile", {
     maxlength: 255
   },
   bs_startdate: {
-    type: Sequelize.DATE
+    type: Sequelize.DATEONLY
   },
   bs_enddate: {
-    type: Sequelize.DATE
+    type: Sequelize.DATEONLY
   },
   bs_gpaobtainted: {
     type: Sequelize.FLOAT
@@ -142,10 +142,10 @@ const Profile = db.define("profile", {
     maxlength: 255
   },
   hs_startdate: {
-    type: Sequelize.DATE
+    type: Sequelize.DATEONLY
   },
   hs_enddate: {
-    type: Sequelize.DATE
+    type: Sequelize.DATEONLY
   },
   hs_gpaobtainted: {
     type: Sequelize.FLOAT

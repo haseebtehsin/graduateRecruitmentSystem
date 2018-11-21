@@ -1,8 +1,10 @@
 const Use = require("../models/user").user;
+const Profile = require("../models/user").profile;
 const auth = require("../middleware/auth");
 const validate = require("../models/user").validate;
 const Position = require("../models/position").position;
 const Message = require("../models/position").message;
+const Application = require("../models/position").application;
 
 const db = require("../db").sequelize;
 const bcrypt = require("bcryptjs");
@@ -214,6 +216,76 @@ router.get("/dashboard", async function(req, res) {
       console.log("Error:" + err);
     });
     res.render("admin_dashboard", { position: position });
+  }
+});
+
+router.get("/applications/:p_id", urlenCodedParser, async (req, res) => {
+  if (req.session.user_type !== "A") res.send("Un-Authorized Access");
+  else {
+    const application = await Application.findAll({
+      where: {
+        position_id: req.params.p_id,
+        admin_id: req.session.user_id
+      }
+    }).error(function(err) {
+      console.log("Error:" + err);
+    });
+    const user_ids = application.map(a => a.applicant_id);
+    console.log(user_ids);
+    const user = await Use.findAll({
+      where: {
+        id: user_ids
+      }
+    });
+    const profile = await Profile.findAll({
+      where: {
+        userId: user_ids
+      }
+    });
+    console.log(user);
+    if (!application) res.send("No Applications");
+    else {
+      res.render("admin_applications", {
+        application: application,
+        profile: profile,
+        user: user
+      });
+    }
+  }
+});
+
+router.get("/offer/:p_id/:u_id", urlenCodedParser, async (req, res) => {
+  if (req.session.user_type !== "A") res.send("Un-Authorized Access");
+  else {
+    const application = await Application.findAll({
+      where: {
+        position_id: req.params.p_id,
+        admin_id: req.session.user_id
+      }
+    }).error(function(err) {
+      console.log("Error:" + err);
+    });
+    const user_ids = application.map(a => a.applicant_id);
+    console.log(user_ids);
+    const user = await Use.findAll({
+      where: {
+        id: user_ids
+      }
+    });
+    const profile = await Use.findAll({
+      where: {
+        userId: user_ids
+      }
+    });
+    console.log(user);
+    if (!application) res.send("No Applications");
+    else {
+      res.render("admin_applications", {
+        application: application,
+        profile: profile,
+        user: user
+      });
+    }
   }
 });
 

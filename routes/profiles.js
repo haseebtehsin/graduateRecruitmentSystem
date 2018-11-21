@@ -54,7 +54,7 @@ router.post("/add", urlenCodedParser, async (req, res) => {
       hs_gpatotal: req.body.hsgpa_t
     }).catch(err => res.send("invalid details"));
     console.log("profile successfully setup");
-    if (profile) res.render("/api/dashboard");
+    if (profile) res.redirect("/api/dashboard");
   }
   //   .then(use => res.send(`user registered`));
   //   console.log(req.body);

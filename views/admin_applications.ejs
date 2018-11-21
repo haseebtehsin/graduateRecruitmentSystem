@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Graduate Recruitment System</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/@pusher/chatkit@0.7.12/dist/web/chatkit.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+      .jumbotron {
+        background-color: darkslategray;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <div>
+          <p style="text-align:right;">
+            <a href="/logout" class="btn btn-info btn-lg">
+              <span class="glyphicon glyphicon-log-out"></span> Log out
+            </a>
+          </p>
+        </div>
+        <h1>Graduate Recruitment System</h1>
+      </div>
+
+      <div class="jumbotron">
+        <% user.forEach(function(user){
+        <multiview> <p><%= user.id%></p> </multiview> <% })%>
+        <!--
+          <% user.forEach(function(user){ %>
+            <br/><br/>
+          <div class="row">
+
+
+                <div class="card">
+
+                    <div class="card-block p-1">
+
+                  <div class="card-body">
+
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                            <div class="list-group-item bg-danger mb-3">
+                                <div class="card-title">
+                                    <p class="card-title">Applicant Name: <%= user.username%></p>
+                                  </div>
+                                </div></li>
+
+
+                            <% if (application.applicant_id==user.id) { %>
+                          <li class="list-group-item">
+                              <div class="list-group-item bg-success mb-3">
+                                <div class="card-body">
+                                  <p class="card-title">Cover Letter</p>
+                                  <h6 class="card-text"><%= application.cover_letter%></h6>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <% }%>
+                        </ul>
+                    <hr>
+                    <form id="sendOffer" method="get" action="/api/admin/offer/<%= application.position_id%>/<%= user.id%>">
+                      <div class="input-group">
+                        <input type="text" autocomplete="off" name="messagetxt" class="form-control" placeholder="Type your message...">
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-warning">Send</button>
+                        </div>
+                      </div>
+                    </form><br/>
+                    <p style="text-align:right;">
+                      <a href="/admin" class="btn btn-success" role="button">Go to Home</a>
+                  </div>
+
+                  </div>
+
+                </div>
+              </div>
+              <% })%>
+        -->
+      </div>
+    </div>
+  </body>
+</html>

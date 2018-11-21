@@ -86,15 +86,16 @@
             </div>
             </div>
           -->
-          <form action="/api/admin/message/<%= position.id%>" method="get"> 
+          <form action="/api/admin/message/<%= position.id%>" method="get">
             <div class="form-group">
-              <button
-                type="submit"
-                class="btn btn-primary"
+              <button type="submit" class="btn btn-primary">Messages</button>
+              <a
+                href="/api/dashboard/applications/<%= position.id%>"
+                formmethod="get"
+                class="btn btn-warning"
+                role="button"
+                >View Applications</a
               >
-                Messages
-              </button>
-              </button>
             </div>
           </form>
         </div>
