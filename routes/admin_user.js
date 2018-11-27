@@ -257,34 +257,38 @@ router.get("/applications/:p_id", urlenCodedParser, async (req, res) => {
 router.get("/offer/:p_id/:u_id", urlenCodedParser, async (req, res) => {
   if (req.session.user_type !== "A") res.send("Un-Authorized Access");
   else {
-    const application = await Application.findAll({
-      where: {
-        position_id: req.params.p_id,
-        admin_id: req.session.user_id
+    const application = await Application.update(
+      { decision: "O" },
+      {
+        where: {
+          position_id: req.params.p_id,
+          admin_id: req.session.user_id,
+          applicant_id: req.params.u_id
+        }
       }
-    }).error(function(err) {
-      console.log("Error:" + err);
-    });
-    const user_ids = application.map(a => a.applicant_id);
-    console.log(user_ids);
-    const user = await Use.findAll({
-      where: {
-        id: user_ids
-      }
-    });
-    const profile = await Use.findAll({
-      where: {
-        userId: user_ids
-      }
-    });
-    console.log(user);
-    if (!application) res.send("No Applications");
-    else {
-      res.render("admin_applications", {
-        application: application,
-        profile: profile,
-        user: user
+    )
+      .error(function(err) {
+        console.log("Error:" + err);
+      })
+      .then(count => {
+        if (count) return count;
       });
+    // const user_ids = application.map(a => a.applicant_id);
+    // console.log(user_ids);
+    // const user = await Use.findAll({
+    //   where: {
+    //     id: user_ids
+    //   }
+    // });
+    // const profile = await Use.findAll({
+    //   where: {
+    //     userId: user_ids
+    //   }
+    // });
+    // console.log(user);
+    if (application) res.send("Offer sent");
+    else {
+      res.send("Error Occurred");
     }
   }
 });

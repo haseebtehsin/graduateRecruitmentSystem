@@ -152,4 +152,79 @@ router.post("/apply", urlenCodedParser, async (req, res) => {
   }
 });
 
+router.get("/offers", urlenCodedParser, async (req, res) => {
+  if (req.session.user_type !== "S") res.send("Un-Authorized Access");
+  else {
+    const application = await Application.findAll({
+      where: {
+        applicant_id: req.session.user_id,
+        decision: "O"
+      }
+    }).error(function(err) {
+      console.log("Error:" + err);
+    });
+    if (!application) res.send("No Admission Offers");
+    else {
+      const pos = application.map(a => a.position_id);
+      const position = await Position.findAll({
+        where: {
+          id: pos
+        }
+      }).error(function(err) {
+        console.log("Error:" + err);
+      });
+
+      res.render("offers", { application: application, position: position });
+    }
+  }
+});
+
+router.get("/accept_offer/:a_id/:p_id", urlenCodedParser, async (req, res) => {
+  if (req.session.user_type !== "S") res.send("Un-Authorized Access");
+  else {
+    const app = await Application.findAndCountAll({
+      where: {
+        position_id: req.params.p_id,
+        decision: "A"
+      }
+    }).error(function(err) {
+      console.log("Error:" + err);
+    });
+
+    const position = await Position.findOne({
+      where: {
+        id: req.params.p_id
+      }
+    }).error(function(err) {
+      console.log("Error:" + err);
+    });
+    console.log(app.count);
+    console.log(position.number_of_positions);
+    if (app.count >= position.number_of_positions)
+      res.send(
+        "You are late, other applicants have already accepted and positions are now filled"
+      );
+    else {
+      //update decision in applications table Accepted using application_id in comments
+      const application = await Application.update(
+        { decision: "A" },
+        {
+          where: {
+            id: req.params.a_id
+          }
+        }
+      )
+        .error(function(err) {
+          console.log("Error:" + err);
+        })
+        .then(count => {
+          if (count) return count;
+        });
+
+      if (application) res.send("Offer Accepted");
+      else res.send("Some Error Occured");
+    }
+  }
+});
+
 module.exports = router;

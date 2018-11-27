@@ -1,7 +1,11 @@
 const Sequelize = require("sequelize");
 
+// const sequelize = new Sequelize(
+//   `postgres://gradrec:123456@localhost:5432/gradrec`
+// );
+
 const sequelize = new Sequelize(
-  `postgres://gradrec:123456@localhost:5432/gradrec`
+  `postgres://haseeb:haseeb123@harishaseebdb.crxtlfcpvwcw.us-east-2.rds.amazonaws.com:5432/gradrec`
 );
 
 sequelize

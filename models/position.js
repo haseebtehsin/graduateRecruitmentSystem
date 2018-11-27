@@ -39,6 +39,9 @@ const Position = db.define("position", {
   number_of_positions: {
     type: Sequelize.INTEGER,
     required: true
+  },
+  deadline: {
+    type: Sequelize.DATEONLY
   }
 });
 
@@ -83,6 +86,12 @@ const Application = db.define("application", {
     type: Sequelize.TEXT,
     minlength: 100,
     maxlength: 10000
+  },
+
+  decision: {
+    type: Sequelize.STRING,
+    minlength: 1,
+    max_length: 1
   }
 });
 
