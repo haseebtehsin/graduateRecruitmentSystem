@@ -17,23 +17,29 @@
 
     <style>
         .jumbotron {
-            background-color: darkslategray;
-            color: white;
+            color:black;background-color:#a9a9a96b;border-color: black;font-size: -webkit-xxx-large;
+        }
+        .back{
+            background-size: cover; background-image:url('https://directory.buildupp.com/attachments/acb17abef86093a36000a8a8d2f830b92c3bf3c7/store/fill/1920/1080/d06f1436328f7ae22fcefb01eaf670ab9573ac6fd935657cd24955954dc3/file.jpg');
         }
     </style>
 </head>
 
-<body>
+<body class="back">
     <div class="container">
-        <div class="jumbotron">
-            <h1>Graduate Recruitment System</h1>
+        <div class="jumbotron" style="color:black;background-color:#a9a9a91f;border-color: black;font-size: -webkit-xxx-large;">
+            <img style=" float: right; max-width:230px;   max-height:117px; width: auto; height: auto;position: absolute;	top: 0;	right: 12.8%; "
+ src="https://www.mun.ca/apps/images/content/munmobile.png"-->
+ <!--max-width: 100px;display: block-->
+            Graduate Recruitment System
+            
         </div>
 
         <div class="row">
 
             <div class="col-lg-4 col-md-3 col-sm-3">
-                <h4>Login</h4>
-                <div class="jumbotron">
+                <h3>Login</h3>
+                <div class="jumbotron" style="background-color: #d3d3d3b8">
                     <form name="login-form" method="post" action="/api/auth">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -54,8 +60,8 @@
             </div>
 
             <div class="col-lg-4 col-md-3 col-sm-3 col-lg-offset-3">
-                <h4>Sign Up</h4>
-                <div class="jumbotron">
+                <h3>Sign Up</h3>
+                <div class="jumbotron" style="background-color: #d3d3d3b8">
                     <form id="signup-form" method="post" action="/api/users"> 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
