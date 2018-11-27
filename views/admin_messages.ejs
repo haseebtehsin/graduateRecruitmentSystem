@@ -60,7 +60,7 @@
           </div> -->
 
           
-          <% sender.forEach(function(sender){ %>
+          <% user.forEach(function(user){ %>
             <br/><br/>
           <div class="row">
             
@@ -73,12 +73,12 @@
                             <li class="list-group-item">
                             <div class="list-group-item bg-danger mb-3">
                                 <div class="card-title">
-                                    <p class="card-title">Sender Id: <%= sender.DISTINCT%></p>
+                                    <p class="card-title">Sender: <%= user.username%></p>
                                   </div>
                                 </div></li>
 
                           <% message.forEach(function(message){ %>
-                            <% if (message.sender_id==sender.DISTINCT||message.receiver_id==sender.DISTINCT) { %>
+                            <% if (message.sender_id==user.id||message.receiver_id==user.id) { %>
                           <li class="list-group-item">
                               <div class="list-group-item bg-success mb-3">
                                 <!-- <div class="card-header"><%= message.createdAt%></div> -->

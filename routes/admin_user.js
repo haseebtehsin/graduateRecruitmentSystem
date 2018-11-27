@@ -131,7 +131,8 @@ router.get("/message/:id", urlenCodedParser, async (req, res) => {
     const senders = await Message.aggregate("sender_id", "DISTINCT", {
       plain: false,
       where: {
-        receiver_id: req.session.user_id
+        receiver_id: req.session.user_id,
+        position_id: req.params.id
       }
     }).error(function(err) {
       console.log("Error:" + err);
@@ -150,7 +151,7 @@ router.get("/message/:id", urlenCodedParser, async (req, res) => {
       }).error(function(err) {
         console.log("Error:" + err);
       });
-      console.log(position.id);
+      // console.log(position.id);
       const message = await Message.findAll({
         where: {
           position_id: req.params.id,
@@ -164,10 +165,33 @@ router.get("/message/:id", urlenCodedParser, async (req, res) => {
         console.log("Error:" + err);
       });
 
+      // const message = await Message.findAll({
+      //   where: {
+      //     [Op.or]: [
+      //       { sender_id: req.session.user_id, position_id: req.params.id },
+
+      //       { receiver_id: req.session.user_id, position_id: req.params.id }
+      //     ]
+      //   },
+      //   order: [["id", "ASC"], ["createdAt", "ASC"]]
+      // }).error(function(err) {
+      //   console.log("Error:" + err);
+      // });
+
+      const user_ids = senders.map(a => a.DISTINCT);
+      // console.log(user_ids);
+      const user = await Use.findAll({
+        where: {
+          id: user_ids
+        }
+      });
+      // console.log(user);
+
       res.render("admin_messages", {
-        sender: senders,
+        // sender: senders,
         message: message,
-        position: position
+        position: position,
+        user: user
       });
     }
   }
