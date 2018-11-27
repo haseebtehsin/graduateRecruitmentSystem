@@ -16,25 +16,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <style>
-        .jumbotron {
-            background-color: darkslategray;
-            color: white;
+         .jumbotron {
+            color:black;background-color:#a9a9a96b;border-color: black;font-size: -webkit-xxx-large;
+        }
+        .back{
+            background-size: cover; background-image:url('https://directory.buildupp.com/attachments/acb17abef86093a36000a8a8d2f830b92c3bf3c7/store/fill/1920/1080/d06f1436328f7ae22fcefb01eaf670ab9573ac6fd935657cd24955954dc3/file.jpg');
         }
     </style>
 </head>
 
-<body>
+<body class="back">
     <div class="container">
         <div class="jumbotron">
-            <h1>Graduate Recruitment System</h1>
-            <h3>Admin Panel</h3>
+                <img style="max-width: 100px;float: right;" src="https://www.mun.ca/apps/images/content/munmobile.png">
+
+                Graduate Recruitment System
+                           <h3>Admin Panel</h3>
         </div>
 
         <div class="row">
 
             <div class="col-lg-4 col-md-3 col-sm-3">
-                <h4>Login</h4>
+                
                 <div class="jumbotron">
+                        <h4>Login</h4>
                     <form name="login-form" method="post" action="/api/admin/login">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -43,9 +48,9 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <input id="txt-password" type="password" class="form-control" name="password" placeholder="Password">
-                        </div><br>
+                        </div>
                         <input type="submit"  class="btn-primary btn-lg" id="btn-login" role="button">
-                            Login
+                        <label style="font-size: medium">Login</label>
                         </a>
                         <a type="button" href="/forgotPassword" class="btn btn-link btn-block" id="btn-forgot" role="button">Forgot
                             Password?</button>
@@ -55,8 +60,9 @@
             </div>
 
             <div class="col-lg-4 col-md-3 col-sm-3 col-lg-offset-3">
-                <h4>Sign Up</h4>
+                
                 <div class="jumbotron">
+                        <h4>Sign Up</h4>
                     <form id="signup-form" method="post" action="/api/admin/signup"> 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
