@@ -24,7 +24,7 @@ router.get("/", urlenCodedParser, async (req, res) => {
     if (!profile) res.render("profile");
     // console.log(req.session.user_id); //accessing session data but it gives undefined
     else {
-      if (profile.ms_degree === null) {
+      if (profile.ms_degree === "NA") {
         const position = await Position.findAll({
           where: {
             Specialization: profile.bs_specialization,

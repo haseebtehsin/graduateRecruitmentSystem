@@ -93,7 +93,7 @@
                           <% })%>
                         </ul>
                     <hr>
-                    <form id="sendMessage" method="get" action="/api/admin/message/<%= position.id%>/<%= sender.DISTINCT%>">
+                    <form id="sendMessage" method="get" action="/api/admin/message/<%= position.id%>/<%= user.id%>">
                       <div class="input-group">
                         <input type="text" autocomplete="off" name="messagetxt" class="form-control" placeholder="Type your message...">
                         <div class="input-group-append">

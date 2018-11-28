@@ -39,7 +39,6 @@
       <div class="jumbotron">
         <div>
           <h1>Graduate Recruitment System</h1>
-          <h2>Admin Panel</h2>
           <p style="text-align:right;">
             <a href="/logout" class="btn btn-info btn-lg">
               <span class="glyphicon glyphicon-log-out"></span> Log out
@@ -53,56 +52,27 @@
       </div>
 
       <div class="jumbotron">
+        <% application.forEach(function(application){
+        position.forEach(function(position){ user.forEach(function(user){ if
+        (application.position_id==position.id &&
+        application.applicant_id==user.id) { %>
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <br /><br />
-
-            <h4>Click to Edit</h4>
-            <!-- <a href="/api/admin/position/<%= position.id%>"> -->
-            <div class="list-group-item active">
+            <div class="list-group-item bg-success mb-3">
               <div class="card-header"><%= position.level%></div>
               <div class="card-body">
-                <h5 class="card-title"><%= position.title%></h5>
-                <p class="card-text"><%= position.description%></p>
+                <h5 class="card-title">Title: <%= position.title%></h5>
+                <p class="card-text">Description: <%= position.description%></p>
+                <p class="card-title"><%=user.username%>'s Cover Letter</p>
+                <h6 class="card-text"><%= application.cover_letter%></h6>
+                <p style="text-align:right;">
+                  This Offer has been accepted by <%=user.username%>
+                </p>
               </div>
             </div>
           </div>
         </div>
-        <br /><br />
-        <div class="row">
-          <!--
-            <div class="col-md-8">
-              <div class="card">
-                <div class="card-header">Chatbox</div>
-                <div class="card-body">
-                  <dl id="messageList"></dl>
-                  <hr>
-                  <form id="sendMessage" method="post" action="/api/admin/message/<%= position.id%>">
-                    <div class="input-group">
-                      <input type="text" name="message" class="form-control" placeholder="Type your message...">
-                      <div class="input-group-append">
-                        <button class="btn btn-primary">Send</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            </div>
-          -->
-          <form action="/api/admin/message/<%= position.id%>" method="get">
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">Messages</button>
-              <a
-                href="/api/dashboard/applications/<%= position.id%>"
-                formmethod="get"
-                class="btn btn-warning"
-                role="button"
-                >View Applications</a
-              >
-            </div>
-          </form>
-        </div>
+        <% }%> <% })%> <% })%><% })%>
       </div>
     </div>
   </body>

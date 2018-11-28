@@ -22,38 +22,75 @@ router.post("/add", urlenCodedParser, async (req, res) => {
   // const hashed = await bcrypt.hash(req.body.password, salt);
   // console.log(req.session.user.user_id);
   else {
-    profile = await Profile.create({
-      id: req.session.user_id,
-      userId: req.session.user_id,
-      fname: req.body.fname,
-      lname: req.body.lname,
-      gender: req.body.gender,
-      dob: req.body.dob,
-      ms_institute: req.body.msinstitute,
-      ms_degree: req.body.msdegree,
-      ms_specialization: req.body.msspecialization,
-      ms_startdate: req.body.msstart_date,
-      ms_enddate: req.body.msend_date,
-      ms_gpaobtainted: req.body.msgpa_o,
-      ms_gpatotal: req.body.msgpa_t,
+    if (req.body.MSLEVEL == "NA") {
+      profile = await Profile.create({
+        id: req.session.user_id,
+        userId: req.session.user_id,
+        fname: req.body.fname,
+        lname: req.body.lname,
+        gender: req.body.gender,
+        dob: req.body.dob,
 
-      bs_institute: req.body.bsinstitute,
-      bs_degree: req.body.bsdegree,
-      bs_specialization: req.body.bsspecialization,
-      bs_startdate: req.body.bsstart_date,
-      bs_enddate: req.body.bsend_date,
-      bs_gpaobtainted: req.body.bsgpa_o,
-      bs_gpatotal: req.body.bsgpa_t,
+        ms_institute: "NA",
+        ms_degree: "NA",
+        ms_specialization: "NA",
+        // ms_startdate: null,
+        // ms_enddate: null,
+        // ms_gpaobtainted: null,
+        // ms_gpatotal: null,
 
-      hs_institute: req.body.hsinstitute,
-      hs_degree: req.body.hsdegree,
-      hs_specialization: req.body.hsspecialization,
-      hs_startdate: req.body.hsstart_date,
-      hs_enddate: req.body.hsend_date,
-      hs_gpaobtainted: req.body.hsgpa_o,
-      hs_gpatotal: req.body.hsgpa_t
-    }).catch(err => res.send("invalid details"));
-    console.log("profile successfully setup");
+        bs_institute: req.body.bsinstitute,
+        bs_degree: req.body.bsdegree,
+        bs_specialization: req.body.bsspecialization,
+        bs_startdate: req.body.bsstart_date,
+        bs_enddate: req.body.bsend_date,
+        bs_gpaobtainted: req.body.bsgpa_o,
+        bs_gpatotal: req.body.bsgpa_t,
+
+        hs_institute: req.body.hsinstitute,
+        hs_degree: req.body.hsdegree,
+        hs_specialization: req.body.hsspecialization,
+        hs_startdate: req.body.hsstart_date,
+        hs_enddate: req.body.hsend_date,
+        hs_gpaobtainted: req.body.hsgpa_o,
+        hs_gpatotal: req.body.hsgpa_t
+      }).catch(err => res.send("invalid details"));
+      console.log("profile successfully setup");
+    } else {
+      profile = await Profile.create({
+        id: req.session.user_id,
+        userId: req.session.user_id,
+        fname: req.body.fname,
+        lname: req.body.lname,
+        gender: req.body.gender,
+        dob: req.body.dob,
+
+        ms_institute: req.body.msinstitute,
+        ms_degree: req.body.msdegree,
+        ms_specialization: req.body.msspecialization,
+        ms_startdate: req.body.msstart_date,
+        ms_enddate: req.body.msend_date,
+        ms_gpaobtainted: req.body.msgpa_o,
+        ms_gpatotal: req.body.msgpa_t,
+
+        bs_institute: req.body.bsinstitute,
+        bs_degree: req.body.bsdegree,
+        bs_specialization: req.body.bsspecialization,
+        bs_startdate: req.body.bsstart_date,
+        bs_enddate: req.body.bsend_date,
+        bs_gpaobtainted: req.body.bsgpa_o,
+        bs_gpatotal: req.body.bsgpa_t,
+
+        hs_institute: req.body.hsinstitute,
+        hs_degree: req.body.hsdegree,
+        hs_specialization: req.body.hsspecialization,
+        hs_startdate: req.body.hsstart_date,
+        hs_enddate: req.body.hsend_date,
+        hs_gpaobtainted: req.body.hsgpa_o,
+        hs_gpatotal: req.body.hsgpa_t
+      }).catch(err => res.send("invalid details"));
+      console.log("profile successfully setup");
+    }
     if (profile) res.redirect("/api/dashboard");
   }
   //   .then(use => res.send(`user registered`));
