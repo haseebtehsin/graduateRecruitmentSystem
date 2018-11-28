@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Graduate Recruitment System</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -16,77 +18,136 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <style>
-        .jumbotron {
-            color:black;background-color:#a9a9a96b;border-color: black;font-size: -webkit-xxx-large;
-        }
-        .back{
-            background-size: cover; background-image:url('https://directory.buildupp.com/attachments/acb17abef86093a36000a8a8d2f830b92c3bf3c7/store/fill/1920/1080/d06f1436328f7ae22fcefb01eaf670ab9573ac6fd935657cd24955954dc3/file.jpg');
-        }
+      .jumbotron {
+        color: black;
+        background-color: #a9a9a96b;
+        border-color: black;
+        font-size: -webkit-xxx-large;
+      }
+      .back {
+        background-size: cover;
+        background-image: url("https://directory.buildupp.com/attachments/acb17abef86093a36000a8a8d2f830b92c3bf3c7/store/fill/1920/1080/d06f1436328f7ae22fcefb01eaf670ab9573ac6fd935657cd24955954dc3/file.jpg");
+      }
     </style>
-</head>
+  </head>
 
-<body class="back">
+  <body class="back">
     <div class="container">
-        <div class="jumbotron" style="color:black;background-color:#a9a9a91f;border-color: black;font-size: -webkit-xxx-large;">
-            <img style="max-width: 100px;float: right;" src="https://www.mun.ca/apps/images/content/munmobile.png">
-            Graduate Recruitment System
-            
+      <div
+        class="jumbotron"
+        style="color:black;background-color:#a9a9a91f;border-color: black;font-size: -webkit-xxx-large;"
+      >
+        <img
+          style="max-width: 100px;float: right;"
+          src="https://www.mun.ca/apps/images/content/munmobile.png"
+        />
+        Graduate Recruitment System
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 col-md-3 col-sm-3">
+          <h3>Login</h3>
+          <div class="jumbotron" style="background-color: #d3d3d3b8">
+            <form name="login-form" method="post" action="/api/auth">
+              <div class="input-group">
+                <span class="input-group-addon"
+                  ><i class="glyphicon glyphicon-user"></i
+                ></span>
+                <input
+                  id="txt-username"
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  placeholder="Username"
+                />
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"
+                  ><i class="glyphicon glyphicon-lock"></i
+                ></span>
+                <input
+                  id="txt-password"
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  placeholder="Password"
+                />
+              </div>
+              <input
+                type="submit"
+                class="btn-primary btn-lg"
+                id="btn-login"
+                role="button"
+                value="Login"
+              />
+
+              <a
+                href="/api/dashboard/forgotPassword"
+                class="btn btn-warning btn-lg"
+                role="button"
+                id="btn-forgot"
+                formmethod="get"
+              >
+                <span class="glyphicon glyphicon-log-out"></span> Forgot
+                Password?
+              </a>
+            </form>
+          </div>
         </div>
 
-        <div class="row">
-
-            <div class="col-lg-4 col-md-3 col-sm-3">
-                <h3>Login</h3>
-                <div class="jumbotron" style="background-color: #d3d3d3b8">
-                    <form name="login-form" method="post" action="/api/auth">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="txt-username" type="text" class="form-control" name="username" placeholder="Username">
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="txt-password" type="password" class="form-control" name="password" placeholder="Password">
-                        </div><br>
-                        <input type="submit"  class="btn-primary btn-lg" id="btn-login" role="button">
-                            Login
-                        </a>
-                        <a type="button" href="/forgotPassword" class="btn btn-link btn-block" id="btn-forgot" role="button">Forgot
-                            Password?</button>
-                            </a>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-3 col-sm-3 col-lg-offset-3">
-                <h3>Sign Up</h3>
-                <div class="jumbotron" style="background-color: #d3d3d3b8">
-                    <form id="signup-form" method="post" action="/api/users"> 
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="txt-username-s" type="text" class="form-control" name="username" placeholder="Enter Username">
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="txt-password-s" type="password" class="form-control" name="password" placeholder="Enter Password">
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input id="txt-email-s" type="email" class="form-control" name="email" placeholder="Email Address">
-                        </div>
-                        <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3">
-                            <input type="submit" role="button" class="btn-primary btn-lg" id="btn-signup">
-                                
-                        </div>
-                    </form>
-
-                </div>
-            </div>
+        <div class="col-lg-4 col-md-3 col-sm-3 col-lg-offset-3">
+          <h3>Sign Up</h3>
+          <div class="jumbotron" style="background-color: #d3d3d3b8">
+            <form id="signup-form" method="post" action="/api/users">
+              <div class="input-group">
+                <span class="input-group-addon"
+                  ><i class="glyphicon glyphicon-user"></i
+                ></span>
+                <input
+                  id="txt-username-s"
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  placeholder="Enter Username"
+                />
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"
+                  ><i class="glyphicon glyphicon-lock"></i
+                ></span>
+                <input
+                  id="txt-password-s"
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  placeholder="Enter Password"
+                />
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon"
+                  ><i class="glyphicon glyphicon-envelope"></i
+                ></span>
+                <input
+                  id="txt-email-s"
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  placeholder="Email Address"
+                />
+              </div>
+              <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3">
+                <input
+                  type="submit"
+                  role="button"
+                  class="btn-primary btn-lg"
+                  id="btn-signup"
+                  value="Sign Up"
+                />
+              </div>
+            </form>
+          </div>
         </div>
-
+      </div>
     </div>
-
-    
-
-</body>
-
+  </body>
 </html>

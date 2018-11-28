@@ -65,8 +65,12 @@
                 <h5 class="card-title">Title: <%= position.title%></h5>
                 <p class="card-text">Description: <%= position.description%></p>
                 <p style="text-align:right;">
+                    <% if (decision=="A") { %>
+                      <p style="text-align:right;">You have accepted this offer</p>
+                      <% } else { %>
                     <a href="/api/dashboard/apply/<%= position.id%>" formmethod="get" class="btn btn-warning" role="button">Apply to this Position</a>
                     </p>
+                    <% }%>
               </div>
             </div>
           </div>
@@ -83,13 +87,21 @@
                   <ul class="list-group">
                         <% message.forEach(function(message){ %>
                         <li class="list-group-item">
-                            <div class="list-group-item active">
-                              <!-- <div class="card-header"><%= message.createdAt%></div> -->
+                            <% if (message.sender_id==position.userId) { %>
+                            <div class="list-group-item bg-success mb-3">
                               <div class="card-body">
-                                <p class="card-title"><%= message.createdAt%></p>
-                                <h6 class="card-text"><%= message.message_txt%></h6>
+                                <p class="card-title" style="text-align:left;font-size:12px;">Superviser at: <%= message.createdAt%></p>
+                                <h6 class="card-text" style="text-align:left;font-size:15px;"><%= message.message_txt%></h6>
                               </div>
                             </div>
+                            <% } else { %>
+                              <div class="list-group-item active mb-3">
+                                  <div class="card-body">
+                                    <p class="card-title" style="text-align:right;font-size:12px;">Me at: <%= message.createdAt%></p>
+                                    <h6 class="card-text" style="text-align:right;font-size:15px;"><%= message.message_txt%></h6>
+                                  </div>
+                                </div>
+                                <% }%>
                           </a>
                         </li>
                         <% })%>

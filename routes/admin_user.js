@@ -284,38 +284,60 @@ router.get("/applications/:p_id", urlenCodedParser, async (req, res) => {
 router.get("/offer/:p_id/:u_id", urlenCodedParser, async (req, res) => {
   if (req.session.user_type !== "A") res.send("Un-Authorized Access");
   else {
-    const application = await Application.update(
-      { decision: "O" },
-      {
+    const ap = await Application.findAndCountAll({
+      where: {
+        position_id: req.params.p_id,
+        decision: ["A", "O"]
+      }
+    }).error(function(err) {
+      console.log("Error:" + err);
+    });
+
+    const position = await Position.findOne({
+      where: {
+        id: req.params.p_id
+      }
+    }).error(function(err) {
+      console.log("Error:" + err);
+    });
+
+    if (ap.count >= position.number_of_positions)
+      res.send(
+        "You have already sent offers to maximum students, please update number of positions to send more offers"
+      );
+    else {
+      const appl = await Application.findOne({
         where: {
+          applicant_id: req.params.u_id,
           position_id: req.params.p_id,
-          admin_id: req.session.user_id,
-          applicant_id: req.params.u_id
+          decision: "O"
+        }
+      }).error(function(err) {
+        console.log("Error:" + err);
+      });
+      if (appl) res.send("Offer Already Sent to this user");
+      else {
+        const application = await Application.update(
+          { decision: "O" },
+          {
+            where: {
+              position_id: req.params.p_id,
+              admin_id: req.session.user_id,
+              applicant_id: req.params.u_id
+            }
+          }
+        )
+          .error(function(err) {
+            console.log("Error:" + err);
+          })
+          .then(count => {
+            if (count) return count;
+          });
+        if (application) res.send("Offer sent");
+        else {
+          res.send("Error Occurred");
         }
       }
-    )
-      .error(function(err) {
-        console.log("Error:" + err);
-      })
-      .then(count => {
-        if (count) return count;
-      });
-    // const user_ids = application.map(a => a.applicant_id);
-    // console.log(user_ids);
-    // const user = await Use.findAll({
-    //   where: {
-    //     id: user_ids
-    //   }
-    // });
-    // const profile = await Use.findAll({
-    //   where: {
-    //     userId: user_ids
-    //   }
-    // });
-    // console.log(user);
-    if (application) res.send("Offer sent");
-    else {
-      res.send("Error Occurred");
     }
   }
 });
@@ -373,6 +395,46 @@ router.get("/accepted_offers", urlenCodedParser, async (req, res) => {
         position: position
       });
     }
+  }
+});
+
+router.get("/position_update/:p_id", urlenCodedParser, async (req, res) => {
+  if (req.session.user_type !== "A") res.send("Un-Authorized Access");
+  else {
+    console.log(req.session.user_id);
+    console.log(req.params.p_id);
+    const position = await Position.findOne({
+      where: {
+        userId: req.session.user_id,
+        id: req.params.p_id
+      }
+    });
+
+    res.render("admin_update", { position: position });
+  }
+});
+
+router.post("/pos_update/:p_id", urlenCodedParser, async (req, res) => {
+  if (req.session.user_type !== "A") res.send("Un-Authorized Access");
+  else {
+    const position = await Position.update(
+      {
+        title: req.body.title,
+        description: req.body.description,
+        level: req.body.level,
+        Specialization: req.body.specialization,
+        number_of_positions: req.body.nop
+      },
+      {
+        where: {
+          userId: req.session.user_id,
+          id: req.params.p_id
+        }
+      }
+    );
+
+    if (position) res.redirect("/api/admin/dashboard");
+    else res.send("Some error occured");
   }
 });
 

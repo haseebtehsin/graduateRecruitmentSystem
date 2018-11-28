@@ -78,7 +78,23 @@ router.get("/positions/:id", async (req, res) => {
       console.log("Error:" + err);
     });
 
-    res.render("position", { position: position, message: message });
+    const app = await Application.findOne({
+      where: {
+        applicant_id: req.session.user_id,
+        // decision: "A",
+        position_id: req.params.id
+      }
+    }).error(function(err) {
+      console.log("Error:" + err);
+    });
+    let decision = "X";
+    if (app) decision = app.decision;
+
+    res.render("position", {
+      position: position,
+      message: message,
+      decision: decision
+    });
   }
 });
 
@@ -122,33 +138,46 @@ router.get("/apply/:p_id", async (req, res) => {
 router.post("/apply", urlenCodedParser, async (req, res) => {
   if (req.session.user_type !== "S") res.send("Un-Authorized Access");
   else {
-    const position = await Position.findOne({
+    const app = await Application.findOne({
       where: {
-        id: req.body.positionid
+        applicant_id: req.session.user_id,
+        decision: "A"
       }
     }).error(function(err) {
       console.log("Error:" + err);
     });
 
-    const application = await Application.findOne({
-      where: {
-        applicant_id: req.session.user_id,
-        position_id: req.body.positionid
-      }
-    }).error(function(err) {
-      console.log("Error:" + err);
-    });
-    if (application)
-      res.send("Cannot re-apply, you have already applied for this position");
+    if (app)
+      res.send("You have already accepted an offer, cannot apply anymore");
     else {
-      await Application.create({
-        applicant_id: req.session.user_id,
-        position_id: req.body.positionid,
-        cover_letter: req.body.description,
-        admin_id: position.userId
+      const position = await Position.findOne({
+        where: {
+          id: req.body.positionid
+        }
+      }).error(function(err) {
+        console.log("Error:" + err);
       });
+
+      const application = await Application.findOne({
+        where: {
+          applicant_id: req.session.user_id,
+          position_id: req.body.positionid
+        }
+      }).error(function(err) {
+        console.log("Error:" + err);
+      });
+      if (application)
+        res.send("Cannot re-apply, you have already applied for this position");
+      else {
+        await Application.create({
+          applicant_id: req.session.user_id,
+          position_id: req.body.positionid,
+          cover_letter: req.body.description,
+          admin_id: position.userId
+        });
+      }
+      res.send("Successfully Applied");
     }
-    res.send("Successfully Applied");
   }
 });
 
@@ -158,7 +187,7 @@ router.get("/offers", urlenCodedParser, async (req, res) => {
     const application = await Application.findAll({
       where: {
         applicant_id: req.session.user_id,
-        decision: "O"
+        decision: ["O", "A"]
       }
     }).error(function(err) {
       console.log("Error:" + err);
@@ -191,40 +220,95 @@ router.get("/accept_offer/:a_id/:p_id", urlenCodedParser, async (req, res) => {
       console.log("Error:" + err);
     });
 
-    const position = await Position.findOne({
+    const appl = await Application.findOne({
       where: {
-        id: req.params.p_id
+        applicant_id: req.session.user_id,
+        decision: "A"
       }
     }).error(function(err) {
       console.log("Error:" + err);
     });
-    console.log(app.count);
-    console.log(position.number_of_positions);
-    if (app.count >= position.number_of_positions)
-      res.send(
-        "You are late, other applicants have already accepted and positions are now filled"
-      );
-    else {
-      //update decision in applications table Accepted using application_id in comments
-      const application = await Application.update(
-        { decision: "A" },
-        {
-          where: {
-            id: req.params.a_id
-          }
-        }
-      )
-        .error(function(err) {
-          console.log("Error:" + err);
-        })
-        .then(count => {
-          if (count) return count;
-        });
 
-      if (application) res.send("Offer Accepted");
-      else res.send("Some Error Occured");
+    if (appl)
+      res.send("You have already accepted an offer, cannot accept another one");
+    else {
+      const position = await Position.findOne({
+        where: {
+          id: req.params.p_id
+        }
+      }).error(function(err) {
+        console.log("Error:" + err);
+      });
+      console.log(app.count);
+      console.log(position.number_of_positions);
+      if (app.count >= position.number_of_positions)
+        res.send(
+          "You are late, other applicants have already accepted and positions are now filled"
+        );
+      else {
+        //update decision in applications table Accepted using application_id in comments
+        const application = await Application.update(
+          { decision: "A" },
+          {
+            where: {
+              id: req.params.a_id
+            }
+          }
+        )
+          .error(function(err) {
+            console.log("Error:" + err);
+          })
+          .then(count => {
+            if (count) return count;
+          });
+
+        if (application) res.send("Offer Accepted");
+        else res.send("Some Error Occured");
+      }
     }
   }
+});
+router.get("/forgotPassword", urlenCodedParser, async (req, res) => {
+  res.render("forgotPassword");
+});
+
+router.post("/forgotPassword", urlenCodedParser, async (req, res) => {
+  if (!req.session.user_id) {
+    const { error } = validate(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+
+    let user = await User.findOne({
+      where: { email: req.body.email, username: req.body.username }
+    });
+    if (!user)
+      return res.status(400).send("Could not find any user with these details");
+    //   user = await Use.findOne({ where: { userId: req.body.userId } });
+    //   if (user) return res.status(400).send("UserId already exists.");
+    else {
+      const salt = await bcrypt.genSalt(5);
+      const hashed = await bcrypt.hash(req.body.password, salt);
+
+      const upd = await User.update(
+        {
+          password: hashed
+        },
+        {
+          where: {
+            id: user.id
+          }
+        }
+      );
+      if (upd) res.render("home");
+      else res.send("Password could not be updated");
+    }
+  } else {
+    res.send("User already logged in, redirecting to home");
+    // sleep.sleep(2);
+    res.redirect("/api/dashboard");
+  }
+  //   .then(use => res.send(`user registered`));
+  //   console.log(req.body);
+  //   res.send("user registered");
 });
 
 module.exports = router;

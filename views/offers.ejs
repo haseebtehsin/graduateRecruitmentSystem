@@ -64,6 +64,9 @@
                 <p class="card-text">Description: <%= position.description%></p>
                 <p class="card-title">My Cover Letter</p>
                 <h6 class="card-text"><%= application.cover_letter%></h6>
+                <% if (application.decision=="A") { %>
+                <p style="text-align:right;">You have accepted this offer</p>
+                <% } else { %>
                 <p style="text-align:right;">
                   <a
                     href="/api/dashboard/accept_offer/<%= application.id%>/<%= position.id%>"
@@ -73,6 +76,7 @@
                     >Accept Offer</a
                   >
                 </p>
+                <% }%>
               </div>
             </div>
           </div>
