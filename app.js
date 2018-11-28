@@ -29,7 +29,7 @@ app.use(
     secret: "keyboard_cat",
     resave: false,
     saveUninitialized: true,
-    cooke: { secure: false }
+    cookie: { secure: false }
   })
 );
 
