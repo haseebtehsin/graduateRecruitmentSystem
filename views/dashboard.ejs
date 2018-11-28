@@ -19,17 +19,15 @@
 
     <style>
       .jumbotron {
-        color:black;background-color:#a9a9a96b;border-color: black;font-size: -webkit-xxx-large;
+        background-color: darkslategray;
+        color: white;
       }
-      .back{
-            background-size: cover; background-image:url('https://i.pinimg.com/originals/6d/15/4a/6d154adcb750853f0c7f712e28406193.jpg');
-        }
     </style>
   </head>
 
-  <body class="back">
+  <body>
     <div class="container">
-      <div class="jumbotron" style="color:black;background-color:#a9a9a91f;border-color: black;font-size: -webkit-xxx-large;">
+      <div class="jumbotron">
         <div>
           <p style="text-align:right;">
             <a href="/logout" class="btn btn-info btn-lg">
@@ -37,13 +35,20 @@
             </a>
           </p>
         </div>
-        <img style="max-width: 100px;float: right;" src="https://www.mun.ca/apps/images/content/munmobile.png">
-        Graduate Recruitment System
-            
+        <h1>Graduate Recruitment System</h1>
       </div>
 
       <div class="jumbotron">
         <div class="row">
+          <p style="text-align:right;">
+            <a
+              href="/api/dashboard/offers"
+              formmethod="get"
+              class="btn btn-warning"
+              role="button"
+              >Admission Offers</a
+            >
+          </p>
           <div class="col-md-8 col-md-offset-2">
             <ul class="list-group">
               <% position.forEach(function(position){ %>
